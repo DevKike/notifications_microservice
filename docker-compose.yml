@@ -1,0 +1,13 @@
+version: '2'
+
+services: 
+  mongoDb:
+    image: mongo:4.4.6
+    container_name: mongoDb
+    volumes:
+      - ./mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:27017
