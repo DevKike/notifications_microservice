@@ -6,7 +6,7 @@ const { deQueue } = require("../modules/notifications/controller/notification.co
 (() => {
   const sendMailCrone = async (email) => {
     try {
-      await sendMail({ email, html: email.message });
+      await sendMail({ ...email, html: email.message });
       return email;
     } catch (error) {
       throw error;
@@ -17,8 +17,7 @@ const { deQueue } = require("../modules/notifications/controller/notification.co
     const emails = await Email.find().sort({ createdAt: "asc" }).limit(10);
     const sendMailPromise = [];
     for (const email of emails) {
-      sendMailPromise.push(sendMailCrone(email));
-      console.log(email._id);
+      sendMailPromise.push(sendMailCrone(email.toJSON()));
     }
 
     const responses = await Promise.allSettled(sendMailPromise);

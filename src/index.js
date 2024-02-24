@@ -1,7 +1,7 @@
 const app = require("./app/app");
 const config = require("./config/config");
 const connect = require("./db/db");
-//require("./cron/sendMail.cron");
+require("./cron/sendMail.cron");
 
 const port = config.SERVER.PORT;
 

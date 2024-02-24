@@ -2,8 +2,7 @@ const nodemailer = require("nodemailer");
 const { EMAIL } = require("../config/config");
 
 const transport = nodemailer.createTransport({
-  host: EMAIL.HOST,
-  port: EMAIL.PORT,
+  service: EMAIL.SERVICE,
   secure: false,
   auth: {
     user: EMAIL.EMAIL,
@@ -13,6 +12,7 @@ const transport = nodemailer.createTransport({
 
 const sendMail = async (emailInfo) => {
   try {
+    console.log("emailInfo", emailInfo);
     await transport.sendMail({
       from: EMAIL.EMAIL,
       to: emailInfo.to,
@@ -21,6 +21,7 @@ const sendMail = async (emailInfo) => {
     });
     return true;
   } catch (error) {
+    console.log(error);
     return false;
   }
 };
