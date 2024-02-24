@@ -21,7 +21,6 @@ const { deQueue } = require("../modules/notifications/controller/notification.co
     }
 
     const responses = await Promise.allSettled(sendMailPromise);
-    console.log(responses);
     
     const promiseDelete = [];
     for (const response of responses) {

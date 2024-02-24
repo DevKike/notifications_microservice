@@ -12,7 +12,6 @@ const transport = nodemailer.createTransport({
 
 const sendMail = async (emailInfo) => {
   try {
-    console.log("emailInfo", emailInfo);
     await transport.sendMail({
       from: EMAIL.EMAIL,
       to: emailInfo.to,
@@ -21,7 +20,6 @@ const sendMail = async (emailInfo) => {
     });
     return true;
   } catch (error) {
-    console.log(error);
     return false;
   }
 };
