@@ -14,7 +14,7 @@ const { deQueue } = require("../modules/notifications/controller/notification.co
   };
   cron.schedule("*/10 * * * * *", async () => {
     console.log("Crone init");
-    const emails = Email.find().sort({ createdAt: "asc" }).limit(10);
+    const emails = await Email.find().sort({ createdAt: "asc" }).limit(10);
     const sendMailPromise = [];
     for (const email of emails) {
       sendMailPromise.push(sendMailCrone(email));
